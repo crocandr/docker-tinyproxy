@@ -1,0 +1,8 @@
+services:
+  tinyproxy: 
+    image: tinyproxy
+    environment:
+      - TZ='Europe/Budapest'
+    ports:
+      - '8888:8888'
+    restart: unless-stopped
