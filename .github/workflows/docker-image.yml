@@ -24,4 +24,4 @@ jobs:
       run: |
         IMAGE_TAG=$(date +%s)
         echo "$DOCKERHUB_PASS" | docker login --username=$DOCKERHUB_USER --password-stdin
-        docker buildx build . --file Dockerfile --tag docker.io/croc/tinyproxy:$IMAGE_TAG --platform=linux/amd64,linux/arm64,linux/arm/v7 --push
+        docker buildx build . --file Dockerfile --tag docker.io/croc/tinyproxy:$IMAGE_TAG --platform=linux/amd64,linux/arm64 --push
