@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
   schedule:
     # UTC time 3:00 = 5:00 CET
-    #- cron: '05 5 * * 6'
+    - cron: '05 5 * * 6'
 
 jobs:
 
