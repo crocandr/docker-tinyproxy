@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    # UTC time 3:00 = 5:00 CET
+    #- cron: '05 5 * * 6'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build and Push the Docker image
+      env:
+        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+        DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+      run: |
+        IMAGE_TAG=$(date +%s)
+        echo "$DOCKERHUB_PASS" | docker login --username=$DOCKERHUB_USER --password-stdin
+        docker build . --file Dockerfile --tag docker.io/croc/tinyproxy:$IMAGE_TAG --push
